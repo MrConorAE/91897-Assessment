@@ -6,7 +6,7 @@ ABOUT EASYGUI
 
 EasyGui provides an easy-to-use interface for simple GUI interaction
 with a user.  It does not require the programmer to know anything about
-tkinter, frames, widgets, callbacks or lambda.  All GUI interactions are
+tkinter, frapiames, widgets, callbacks or lambda.  All GUI interactions are
 invoked by simple function calls that return results.
 
 @note:
