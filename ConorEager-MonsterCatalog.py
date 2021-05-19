@@ -133,6 +133,31 @@ def chooseMonster(source: list, action: str) -> int:
             return names.index(choice)
 
 
+def deleteMonster(source: list, index: int) -> list:
+    """This function allows the user to delete a monster from a list.
+
+    Args:
+        source (list): The source list to delete the monster from.
+        index (int): The index of the monster to delete.
+
+    Returns:
+        list: A copy of the source list with the monster removed (if deleted), or an identical copy of the source list (if not deleted).
+    """
+    monster = source[index]
+    yes = f"Yes, permanently delete {monster.name}."
+    no = f"No, do not delete {monster.name}."
+    confirmation = eg.buttonbox(f"Are you sure you want to permanently delete {monster.name}?\nThis cannot be undone!",
+                                "Delete Monster - Monster Catalog", [yes, no])
+    if (confirmation == yes):
+        source.pop(index)
+        eg.msgbox(f"The monster {monster.name} was deleted successfully.",
+                  "Delete Monster - Monster Catalog", "Back to List")
+    else:
+        eg.msgbox(f"The monster {monster.name} was not deleted.",
+                  "Delete Monster - Monster Catalog", "Back to List")
+    return source
+
+
 # MAIN MENU
 # This loop is the main menu of the program, which allows the user to select what they want to do.
 while True:
@@ -156,7 +181,13 @@ while True:
         pass
     elif (choice == "delete"):
         # Delete a monster.
-        pass
+        choice = chooseMonster(monsters, "delete")
+        if (choice == None):
+            # Do nothing, it was cancelled.
+            pass
+        else:
+            # Otherwise, save the new list to the Monsters array.
+            monsters = deleteMonster(monsters, choice)
     elif (choice == "view"):
         # View all monsters.
         pass
