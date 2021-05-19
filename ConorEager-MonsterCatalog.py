@@ -13,7 +13,7 @@ class Monster:
     """This class represents a monster card - it contains all the fields required for a monster (name, strength, speed, stealth and cunning).
     """
 
-    def __init__(self, nme, str, spe, ste, cun):
+    def __init__(self, nme: str, str: int, spe: int, ste: int, cun: int):
         """Initialise a new Monster.
 
         Args:
@@ -23,11 +23,43 @@ class Monster:
             ste (Integer): Stealth of the monster.
             cun (Integer): Cunning of the monster.
         """
-        self.name = nme
-        self.strength = str
-        self.speed = spe
-        self.stealth = ste
-        self.cunning = cun
+        # Error checking for monster fields.
+        # Blank name check:
+        if (nme.strip() == ""):
+            raise ValueError("Monsters must have names.")
+        else:
+            self.name = nme
+
+        # Integer check:
+        try:
+            str = int(str)
+            spe = int(spe)
+            ste = int(ste)
+            cun = int(cun)
+        except ValueError:
+            raise ValueError("Monster statistics must be non-blank numbers.")
+
+        # Range checks:
+        if (str > 25 or str < 0):
+            raise ValueError(
+                "Monster statistics must be between 0 and 20.")
+        else:
+            self.strength = str
+        if (spe > 25 or spe < 0):
+            raise ValueError(
+                "Monster statistics must be between 0 and 20.")
+        else:
+            self.speed = spe
+        if (ste > 25 or ste < 0):
+            raise ValueError(
+                "Monster statistics must be between 0 and 20.")
+        else:
+            self.stealth = ste
+        if (cun > 25 or cun < 0):
+            raise ValueError(
+                "Monster statistics must be between 0 and 20.")
+        else:
+            self.cunning = cun
 
 
 # This is the list in which Monster objects are stored.
