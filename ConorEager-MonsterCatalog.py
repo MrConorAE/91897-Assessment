@@ -77,15 +77,50 @@ monsters = [
     Monster("Wispghoul",    17, 19, 3,  2)
 ]
 
+
+def createMonster() -> Monster:
+    """Create a new Monster. Allows the user to enter all the necessary data, and handles errors.
+
+    Returns:
+        Monster: The created monster.
+    """
+    fields = ["Monster Name:", "Strength:", "Speed:", "Stealth:", "Cunning:"]
+    data = ["", "", "", ""]
+    while True:
+        data = eg.multenterbox("Please enter the data for your new monster and press OK to save, or press Cancel to abort.",
+                               "New Monster - Monster Catalog", fields, data)
+        if (data == None):
+            # Cancel was pressed, so abort without saving.
+            return None
+        else:
+            try:
+                newmonster = Monster(
+                    data[0], data[1], data[2], data[3], data[4])
+                break
+            except ValueError as error:
+                eg.msgbox(f"Error: {error}",
+                          "New Monster - Monster Catalog", "Try again")
+    return newmonster
+
+
 # MAIN MENU
 # This loop is the main menu of the program, which allows the user to select what they want to do.
 while True:
     # Define the list of choices. This is a dictionary of format "button text": "internal name".
-    choices = {"Add Monster": "add", "Edit Monster": "edit", "Delete Monster": "delete", "View All Monsters": "view", "Help & About": "help", "Quit": "quit"}
-    choice = choices[eg.buttonbox("Welcome to Monster Manager. Select an option to get started!", "Main Menu - Monster Manager", list(choices.keys()))]
+    choices = {"Add Monster": "add", "Edit Monster": "edit", "Delete Monster": "delete",
+               "View All Monsters": "view", "Help & About": "help", "Quit": "quit"}
+    # Get the user's choice.
+    choice = choices[eg.buttonbox("Welcome to Monster Manager. Select an option to get started!",
+                                  "Main Menu - Monster Manager", list(choices.keys()))]
     if (choice == "add"):
         # Add a monster.
-        pass
+        result = createMonster()
+        if (result == None):
+            # Do nothing, it was cancelled.
+            pass
+        else:
+            # Otherwise, save the result to the Monsters array.
+            monsters.append(result)
     elif (choice == "edit"):
         # Edit a monster.
         pass
