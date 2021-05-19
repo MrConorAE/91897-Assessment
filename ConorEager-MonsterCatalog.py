@@ -82,6 +82,27 @@ def displayMonster(monster: Monster) -> str:
     message = f"Monster '{monster.name}':\nStrength:\t{monster.strength}\nSpeed:\t{monster.speed}\nStealth:\t{monster.stealth}\nCunning:\t{monster.cunning}"
     return message
 
+
+def displayMonsters(source: list):
+    """This function displays all the monsters in a list (source) on screen for the user to view.
+
+    Args:
+        source (list): The list of monsters to display. Must contain Monster objects.
+    """
+    if (len(source) == 0):
+        # If there are no items to display, notify and exit.
+        eg.msgbox(f"There are no monsters to display.\nTry adding one by clicking 'Add Monster' on the main menu.",
+                  "View Catalog - Monster Catalog", "Back to Menu")
+    else:
+        # Otherwise, display the monsters!
+        message = ""
+        for monster in source:
+            # For each monster, get the formatted version from displayMonster().
+            message += "\n\n" + displayMonster(monster)
+        # ...and display the results.
+        eg.textbox(f"There are {len(source)} monsters currently saved.\nPress OK to return to the main menu.",
+                   "View Catalog - Monster Catalog", message)
+
 def createMonster() -> Monster:
     """Create a new Monster. Allows the user to enter all the necessary data, and handles errors.
 
@@ -194,7 +215,7 @@ while True:
             monsters = deleteMonster(monsters, choice)
     elif (choice == "view"):
         # View all monsters.
-        pass
+        displayMonsters(monsters)
     elif (choice == "help"):
         # View help.
         pass
