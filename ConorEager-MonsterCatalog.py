@@ -103,6 +103,36 @@ def createMonster() -> Monster:
     return newmonster
 
 
+def chooseMonster(source: list, action: str) -> int:
+    """This function allows the user to select a monster to do something with.
+
+    Args:
+        source (list): The list from which a monster should be selected. Must contain Monster objects.
+        action (str): The action to be performed to the monster, to help the user (e.g. "delete", "edit")
+
+    Returns:
+        int: The index of the monster chosen in the source.
+    """
+    if (len(source) == 0):
+        # If there are no items to display, notify and exit.
+        eg.msgbox(f"There are no monsters to {action}.\nTry adding one by clicking 'Add Monster' on the main menu.",
+                  "Select Monster - Monster Catalog", "Back to Menu")
+        return None
+    else:
+        # Otherwise, get a list of names to display.
+        # In this case, I'm using a list comprehension to get the names of all the monsters.
+        names = [i.name for i in source]
+        # Display the list
+        choice = eg.choicebox(f"Please select a monster to {action} and press OK, or press Cancel to abort.",
+                              "Select Monster - Monster Catalog", names)
+        if (choice == None):
+            # They pressed Cancel, so abort.
+            return None
+        else:
+            # They chose an item, so return it's index.
+            return names.index(choice)
+
+
 # MAIN MENU
 # This loop is the main menu of the program, which allows the user to select what they want to do.
 while True:
