@@ -249,4 +249,11 @@ while True:
         pass
     elif (choice == "quit"):
         # Quit the program.
-        pass
+        yes = "Yes, quit"
+        no = "No, do not quit"
+        confirmation = eg.buttonbox(
+            "Are you sure you want to quit Monster Catalog?\nAny changes you have made to the catalog will not be saved.", "Quit - Monster Catalog", [yes, no])
+        if (confirmation == yes):
+            quit()
+        else:
+            pass
