@@ -78,6 +78,10 @@ monsters = [
 ]
 
 
+def displayMonster(monster: Monster) -> str:
+    message = f"Monster '{monster.name}':\nStrength:\t{monster.strength}\nSpeed:\t{monster.speed}\nStealth:\t{monster.stealth}\nCunning:\t{monster.cunning}"
+    return message
+
 def createMonster() -> Monster:
     """Create a new Monster. Allows the user to enter all the necessary data, and handles errors.
 
