@@ -103,6 +103,31 @@ def displayMonsters(source: list):
         eg.textbox(f"There are {len(source)} monsters currently saved.\nPress OK to return to the main menu.",
                    "View Catalog - Monster Catalog", message)
 
+
+def printMonsters(source: list):
+    """This function prints all the monsters in a list (source) to the Python Shell.
+
+    Args:
+        source (list): The list of monsters to display. Must contain Monster objects.
+    """
+    if (len(source) == 0):
+        # If there are no items to display, notify and exit.
+        eg.msgbox(f"There are no monsters to display.\nTry adding one by clicking 'Add Monster' on the main menu.",
+                  "View Catalog - Monster Catalog", "Back to Menu")
+        print("No monsters to display.")
+    else:
+        # Otherwise, print the monsters!
+        message = ""
+        for monster in source:
+            # For each monster, get the formatted version from displayMonster().
+            message += "\n\n" + displayMonster(monster)
+        # ...and display the results.
+        print(
+            f"There are {len(source)} monsters currently saved:\n\n{message}")
+        eg.msgbox("The monster catalog has been printed to the Python Shell.",
+                  "Print Catalog - Monster Catalog", "Back to Menu")
+
+
 def createMonster() -> Monster:
     """Create a new Monster. Allows the user to enter all the necessary data, and handles errors.
 
@@ -188,7 +213,7 @@ def deleteMonster(source: list, index: int) -> list:
 while True:
     # Define the list of choices. This is a dictionary of format "button text": "internal name".
     choices = {"Add Monster": "add", "Edit Monster": "edit", "Delete Monster": "delete",
-               "View All Monsters": "view", "Help & About": "help", "Quit": "quit"}
+               "View Catalog": "view", "Print Catalog": "print", "Help & About": "help", "Quit": "quit"}
     # Get the user's choice.
     choice = choices[eg.buttonbox("Welcome to Monster Manager. Select an option to get started!",
                                   "Main Menu - Monster Manager", list(choices.keys()))]
@@ -216,6 +241,9 @@ while True:
     elif (choice == "view"):
         # View all monsters.
         displayMonsters(monsters)
+    elif (choice == "print"):
+        # Print the catalog to the Shell.
+        printMonsters(monsters)
     elif (choice == "help"):
         # View help.
         pass
