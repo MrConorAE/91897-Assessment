@@ -77,6 +77,8 @@ monsters = [
     Monster("Wispghoul",    17, 19, 3,  2)
 ]
 
+# FUNCTIONS
+
 
 def displayMonster(monster: Monster) -> str:
     message = f"Monster '{monster.name}':\nStrength:\t{monster.strength}\nSpeed:\t{monster.speed}\nStealth:\t{monster.stealth}\nCunning:\t{monster.cunning}"
