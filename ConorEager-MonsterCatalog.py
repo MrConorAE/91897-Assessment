@@ -40,24 +40,24 @@ class Monster:
             raise ValueError("Monster statistics must be non-blank numbers.")
 
         # Range checks:
-        if (str > 25 or str < 0):
+        if (str > 25 or str < 1):
             raise ValueError(
-                "Monster statistics must be between 0 and 20.")
+                "Monster statistics must be between 1 and 20.")
         else:
             self.strength = str
-        if (spe > 25 or spe < 0):
+        if (spe > 25 or spe < 1):
             raise ValueError(
-                "Monster statistics must be between 0 and 20.")
+                "Monster statistics must be between 1 and 20.")
         else:
             self.speed = spe
-        if (ste > 25 or ste < 0):
+        if (ste > 25 or ste < 1):
             raise ValueError(
-                "Monster statistics must be between 0 and 20.")
+                "Monster statistics must be between 1 and 20.")
         else:
             self.stealth = ste
-        if (cun > 25 or cun < 0):
+        if (cun > 25 or cun < 1):
             raise ValueError(
-                "Monster statistics must be between 0 and 20.")
+                "Monster statistics must be between 1 and 20.")
         else:
             self.cunning = cun
 
