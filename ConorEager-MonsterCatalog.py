@@ -146,11 +146,21 @@ def createMonster() -> Monster:
             try:
                 newmonster = Monster(
                     data[0], data[1], data[2], data[3], data[4])
-                break
+                # Confirmation screen
+                confirm = eg.buttonbox(f"Add this monster to the catalog?\n\n{displayMonster(newmonster)}", "New Monster - Monster Catalog",
+                                       ["Yes, add it", "No, edit it again", "No, don't add it"])
+                if (confirm == "Yes, add it"):
+                    # Save the monster!
+                    return newmonster
+                elif (confirm == "No, edit it again"):
+                    # Return to the creation screen
+                    continue
+                else:
+                    # Abandon it entirely
+                    return None
             except ValueError as error:
                 eg.msgbox(f"Error: {error}",
                           "New Monster - Monster Catalog", "Try again")
-    return newmonster
 
 
 def editMonster(oldmonster: Monster) -> Monster:
@@ -172,11 +182,21 @@ def editMonster(oldmonster: Monster) -> Monster:
             try:
                 newmonster = Monster(
                     data[0], data[1], data[2], data[3], data[4])
-                break
+                # Confirmation screen
+                confirm = eg.buttonbox(f"Save the changes to this monster?\n\n== BEFORE: ==\n{displayMonster(oldmonster)}\n\n== AFTER: ==\n{displayMonster(newmonster)}", "Edit Monster - Monster Catalog",
+                                       ["Yes, save it", "No, edit it again", "No, don't save it"])
+                if (confirm == "Yes, save it"):
+                    # Save the edited monster!
+                    return newmonster
+                elif (confirm == "No, edit it again"):
+                    # Return to the editing screen
+                    continue
+                else:
+                    # Abandon it entirely
+                    return None
             except ValueError as error:
                 eg.msgbox(f"Error: {error}",
-                          "New Monster - Monster Catalog", "Try again")
-    return newmonster
+                          "Edit Monster - Monster Catalog", "Try again")
 
 
 def chooseMonster(source: list, action: str) -> int:
