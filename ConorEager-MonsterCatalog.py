@@ -153,6 +153,32 @@ def createMonster() -> Monster:
     return newmonster
 
 
+def editMonster(oldmonster: Monster) -> Monster:
+    """Edit an existing Monster. Allows the user to enter all the necessary data, and handles errors.
+
+    Returns:
+        Monster: The new monster.
+    """
+    fields = ["Monster Name:", "Strength:", "Speed:", "Stealth:", "Cunning:"]
+    data = [oldmonster.name, oldmonster.strength,
+            oldmonster.speed, oldmonster.stealth, oldmonster.cunning]
+    while True:
+        data = eg.multenterbox("Please enter the new data for your monster and press OK to save, or press Cancel to abort.",
+                               "Edit Monster - Monster Catalog", fields, data)
+        if (data == None):
+            # Cancel was pressed, so abort without saving.
+            return oldmonster
+        else:
+            try:
+                newmonster = Monster(
+                    data[0], data[1], data[2], data[3], data[4])
+                break
+            except ValueError as error:
+                eg.msgbox(f"Error: {error}",
+                          "New Monster - Monster Catalog", "Try again")
+    return newmonster
+
+
 def chooseMonster(source: list, action: str) -> int:
     """This function allows the user to select a monster to do something with.
 
@@ -228,7 +254,20 @@ while True:
             monsters.append(result)
     elif (choice == "edit"):
         # Edit a monster.
-        pass
+        choice = chooseMonster(monsters, "delete")
+        if (choice == None):
+            # Do nothing, it was cancelled.
+            pass
+        else:
+            # Otherwise, start editing.
+            result = editMonster(monsters[choice])
+            if (result == None):
+                # Do nothing, it was cancelled.
+                pass
+            else:
+                # Otherwise, save the edited monster to the Monsters array.
+                monsters.pop(choice)
+                monsters.insert(choice, result)
     elif (choice == "delete"):
         # Delete a monster.
         choice = chooseMonster(monsters, "delete")
