@@ -62,6 +62,7 @@ class Monster:
             self.cunning = cun
 
 
+# GLOBAL VARIABLES
 # This is the list in which Monster objects are stored.
 #   Monster(Name,           Str,Spd,Ste,Cun)
 monsters = [
@@ -76,6 +77,16 @@ monsters = [
     Monster("Froststep",    14, 14, 17, 4),
     Monster("Wispghoul",    17, 19, 3,  2)
 ]
+
+# This is a dictionary which contains the help text.
+help = {
+    "About Monster Catalog": "Monster Catalog\n\nCopyright (c) Conor Eager, 2021. All rights reserved.\nDeveloped as a submission for AS91897: Use advanced programming techniques to develop a computer program",
+    "Adding monsters to the catalog": "To add a monster to the catalog, simply click Add Monster on the main menu.\nA new window will then pop up allowing you to enter the necessary data for your new monster: the name, strength, speed, stealth, and cunning.\nOnce you have entered the data, press [OK].\nIf, instead, you don't want to add a monster anymore, click [Cancel].\nIf you pressed [OK], you'll be shown a confirmation window displaying the monster you are about to add. If the details are correct, click [Yes, add it]. If it's not OK, either click [No, edit it again] to go back and make changes, or [No, don't add it] to discard the monster entirely.",
+    "Editing monsters already in the catalog": "To edit a monster already in the catalog, simply click Edit Monster on the main menu.\nA new window will then pop up, containing the current data, and allowing you to make any necessary changes to your monster.\nOnce you have made your changes, press [OK].\nIf, instead, you don't want to edit anymore, click [Cancel].\nIf you pressed [OK], you'll be shown a confirmation window displaying the monster before your changes ('BEFORE') and after ('AFTER'). If you're happy with your changes, click [Yes, save it]. If it's not OK, either click [No, edit it again] to go back and make changes, or [No, don't save it] to discard your changes and keep the 'BEFORE' monster.",
+    "Deleting monsters from the catalog": "To delete a monster from the catalog, click [Delete Monster] on the main menu.\nA selection box will appear containing the names of all the monsters currently saved. Select the one you wish to delete and press [OK], or press [Cancel] if you don't want to delete anything.\nOnce you have selected a monster, you'll be asked if you are sure you want to delete the monster. If you're sure, click [Yes, permanently delete]. If you don't want to delete the monster, just click [No, do not delete].",
+    "Viewing the catalog": "To view all the monsters saved in your catalog, click [View Catalog].\nA new window will appear, displaying all the monsters currently in the catalog.\nWhen you're done, just press [OK] to return to the main menu.",
+    "Printing the catalog": "To print the contents of your catalog to the Python Shell (or terminal), just click [Print Catalog]. That's it!"
+}
 
 # FUNCTIONS
 
@@ -307,7 +318,16 @@ while True:
         printMonsters(monsters)
     elif (choice == "help"):
         # View help.
-        pass
+        while True:
+            # Choose a topic
+            topic = eg.choicebox("Please select a topic to view help for, or press Cancel to go back.", "Help - Monster Catalog",
+                                 list(help.keys()))
+            if (topic == None):
+                # Cancel.
+                break
+            else:
+                # Display the topic's help in a text messagebox
+                eg.textbox(topic, "Help - Monster Catalog", help[topic])
     elif (choice == "quit"):
         # Quit the program.
         yes = "Yes, quit"
