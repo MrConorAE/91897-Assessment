@@ -276,7 +276,7 @@ while True:
             monsters.append(result)
     elif (choice == "edit"):
         # Edit a monster.
-        choice = chooseMonster(monsters, "delete")
+        choice = chooseMonster(monsters, "edit")
         if (choice == None):
             # Do nothing, it was cancelled.
             pass
