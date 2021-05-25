@@ -268,13 +268,15 @@ def deleteMonster(source: list, index: int) -> list:
 
 
 # MAIN MENU
+# Introduction.
+eg.msgbox("Welcome to Monster Catalog!\n\nFor help, click [Help & About] on the main menu.\n\nCopyright (c) Conor Eager, 2021. All rights reserved.")
 # This loop is the main menu of the program, which allows the user to select what they want to do.
 while True:
     # Define the list of choices. This is a dictionary of format "button text": "internal name".
     choices = {"Add Monster": "add", "Edit Monster": "edit", "Delete Monster": "delete",
                "View Catalog": "view", "Print Catalog": "print", "Help & About": "help", "Quit": "quit"}
     # Get the user's choice.
-    choice = choices[eg.buttonbox("Welcome to Monster Manager. Select an option to get started!",
+    choice = choices[eg.buttonbox("Welcome to Monster Manager.\nClick a button to get started!\n\nFor help, click [Help & About].",
                                   "Main Menu - Monster Manager", list(choices.keys()))]
     if (choice == "add"):
         # Add a monster.
