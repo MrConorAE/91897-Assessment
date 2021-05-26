@@ -42,22 +42,22 @@ class Monster:
         # Range checks:
         if (str > 25 or str < 1):
             raise ValueError(
-                "Monster statistics must be between 1 and 20.")
+                "Monster statistics must be between 1 and 25.")
         else:
             self.strength = str
         if (spe > 25 or spe < 1):
             raise ValueError(
-                "Monster statistics must be between 1 and 20.")
+                "Monster statistics must be between 1 and 25.")
         else:
             self.speed = spe
         if (ste > 25 or ste < 1):
             raise ValueError(
-                "Monster statistics must be between 1 and 20.")
+                "Monster statistics must be between 1 and 25.")
         else:
             self.stealth = ste
         if (cun > 25 or cun < 1):
             raise ValueError(
-                "Monster statistics must be between 1 and 20.")
+                "Monster statistics must be between 1 and 25.")
         else:
             self.cunning = cun
 
@@ -269,7 +269,8 @@ def deleteMonster(source: list, index: int) -> list:
 
 # MAIN MENU
 # Introduction.
-eg.msgbox("Welcome to Monster Catalog!\n\nFor help, click [Help & About] on the main menu.\n\nCopyright (c) Conor Eager, 2021. All rights reserved.")
+eg.msgbox(
+    "Welcome to Monster Catalog!\n\nFor help, click [Help & About] on the main menu.\n\nCopyright (c) Conor Eager, 2021. All rights reserved.")
 # This loop is the main menu of the program, which allows the user to select what they want to do.
 while True:
     # Define the list of choices. This is a dictionary of format "button text": "internal name".
